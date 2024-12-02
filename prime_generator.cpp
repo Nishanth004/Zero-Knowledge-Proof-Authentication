@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <random>
+#include <fstream>
 #include <unordered_set>
 
 using namespace std;
@@ -67,6 +68,14 @@ void primeNumberGenerator() {
             cout << "Invalid choice. Please select either 'e' or 'g'.\n";
         }
     }
+    ofstream outputFile("prime.txt");
+    if (!outputFile) {
+        cerr << "Error: Unable to write prime to file.\n";
+        return;
+    }
+
+    outputFile << suggestedPrime;
+    outputFile.close();
 }
 
 int main() {

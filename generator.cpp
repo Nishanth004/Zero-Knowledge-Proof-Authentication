@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <fstream> 
 
 using namespace std;
 
@@ -28,6 +29,14 @@ void generatorSelection(unsigned long long prime) {
             cout << "Invalid generator. Please enter a value such that 1 < g < " << prime - 1 << ".\n";
         }
     }
+    ofstream outputFile("generatorFile.txt");
+    if (!outputFile) {
+        cerr << "Error: Unable to write generator to file.\n";
+        return;
+    }
+
+    outputFile << generator;
+    outputFile.close();
 }
 
 int main() {
