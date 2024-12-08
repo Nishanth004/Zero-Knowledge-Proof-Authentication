@@ -1,3 +1,4 @@
 1. username and hashed password database
 2. prime number maker
 3. showing each step visually
+4. connect every phases
