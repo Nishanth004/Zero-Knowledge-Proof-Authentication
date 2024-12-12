@@ -33,14 +33,14 @@ unsigned long long generateRandomPrime(unordered_set<unsigned long long>& usedPr
     }
 }
 
-// Prime number generator tool
+// Prime number generator tool - Console version
 void primeNumberGenerator() {
     char choice;
     unsigned long long userNumber, suggestedPrime;
     unordered_set<unsigned long long> usedPrimes;
 
     while (true) {
-        cout << "\n=== Phase 2: Prime Number Generation ===\n";
+        cout << "\n=== Prime Number Generation ===\n";
         cout << "Do you want to (e)nter your own number or (g)et a system-suggested prime? (e/g): ";
         cin >> choice;
 
@@ -68,6 +68,8 @@ void primeNumberGenerator() {
             cout << "Invalid choice. Please select either 'e' or 'g'.\n";
         }
     }
+
+    // Save the selected prime number to a file
     ofstream outputFile("prime.txt");
     if (!outputFile) {
         cerr << "Error: Unable to write prime to file.\n";
@@ -76,6 +78,7 @@ void primeNumberGenerator() {
 
     outputFile << suggestedPrime;
     outputFile.close();
+    cout << "Prime number " << suggestedPrime << " has been saved to prime.txt.\n";
 }
 
 int main() {
