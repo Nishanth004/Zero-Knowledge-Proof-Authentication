@@ -53,7 +53,7 @@ int main() {
     unsigned long long y = modularExponentiation(g, x, p);
 
     // Output the result
-    ofstream yFile("y_value.txt");
+    ofstream yFile("y.txt");
     if (!yFile) {
         cerr << "Error: Unable to write to y_value.txt.\n";
         return 1;

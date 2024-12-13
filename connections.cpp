@@ -1,48 +1,151 @@
+// // // #include <iostream>
+// // // #include <fstream>
+
+// // // class ConnectionManager {
+// // // private:
+// // //     bool connectionsInitialized;
+
+// // // public:
+// // //     ConnectionManager() : connectionsInitialized(false) {}
+
+// // //     void initializeConnections() {
+// // //         connectionsInitialized = true;
+// // //         std::cout << "Connections have been successfully initialized.\n";
+
+// // //         // Update status in a file to communicate with GUI
+// // //         std::ofstream statusFile("status.txt");
+// // //         statusFile << "Connections Initialized";
+// // //         statusFile.close();
+// // //     }
+// // // };
+
+// // // int main() {
+// // //     ConnectionManager cm; 
+// // //     cm.initializeConnections();
+// // //     return 0;
+// // // }
+
+// // #include <iostream>
+// // #include <chrono>
+// // #include <thread> // Optional, only for time-related functions
+
+// // using namespace std;
+
+// // // Function to simulate checking connections
+// // void checkConnections() {
+// //     cout << "Checking connections..." << endl;
+
+// //     // Simulate delay using a loop (not as efficient as threading, but works for this purpose)
+// //     auto start = chrono::steady_clock::now();
+// //     while (chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - start).count() < 2) {
+// //         // Simulate delay by looping for 2 seconds
+// //     }
+
+// //     cout << "\nStatus: No ports or connections are currently established.\n";
+// //     cout << "All connections are disabled.\n";
+
+// //     // Indicate further actions
+// //     cout << "\nNext Step: Prime number generation will be initiated in Phase 2.\n";
+// // }
+
+// // int main() {
+// //     cout << "=== Phase 1: Connection Check ===\n";
+// //     checkConnections();
+
+// //     return 0;
+// // }
+
+
 // #include <iostream>
 // #include <fstream>
+// #include <string>
 
-// class ConnectionManager {
-// private:
-//     bool connectionsInitialized;
-
-// public:
-//     ConnectionManager() : connectionsInitialized(false) {}
-
-//     void initializeConnections() {
-//         connectionsInitialized = true;
-//         std::cout << "Connections have been successfully initialized.\n";
-
-//         // Update status in a file to communicate with GUI
-//         std::ofstream statusFile("status.txt");
-//         statusFile << "Connections Initialized";
-//         statusFile.close();
-//     }
-// };
+// using namespace std;
 
 // int main() {
-//     ConnectionManager cm; 
-//     cm.initializeConnections();
+//     string status;
+//     ifstream statusFile("status.txt");
+
+//     if (!statusFile) {
+//         // File doesn't exist, assume no connection
+//         cout << "Status file not found. Assuming no connection.\n";
+//         ofstream outFile("status.txt");
+//         if (outFile) {
+//             outFile << "no";
+//         } else {
+//             cerr << "Error: Unable to create status file.\n";
+//             return 1;
+//         }
+//         status = "no";
+//     } else {
+//         getline(statusFile, status);
+//         statusFile.close();
+//     }
+
+//     if (status == "yes") {
+//         cout << "Connections are established.\n";
+//     } else {
+//         cout << "No ports or connections are established.\n";
+//     }
+
 //     return 0;
 // }
 
+
 #include <iostream>
+#include <fstream>
 #include <chrono>
-#include <thread> // Optional, only for time-related functions
 
 using namespace std;
 
+// Function to simulate a delay (busy-wait loop)
+void simulateDelay(int milliseconds) {
+    auto start = chrono::steady_clock::now();
+    while (chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now() - start).count() < milliseconds) {
+        // Busy wait
+    }
+}
+
 // Function to simulate checking connections
 void checkConnections() {
-    cout << "Checking connections..." << endl;
+    cout << "Checking connections..." << flush;
 
-    // Simulate delay using a loop (not as efficient as threading, but works for this purpose)
-    auto start = chrono::steady_clock::now();
-    while (chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - start).count() < 2) {
-        // Simulate delay by looping for 2 seconds
+    // Simulate delay with a dynamic progress indicator
+    for (int i = 0; i < 6; ++i) {
+        simulateDelay(400); // Delay for 400ms
+        cout << "." << flush; // Append dots for progress visualization
     }
+    cout << endl;
 
-    cout << "\nStatus: No ports or connections are currently established.\n";
-    cout << "All connections are disabled.\n";
+    // Check the status file
+    ifstream statusFile("status.txt");
+    if (!statusFile) {
+        // If the file doesn't exist, assume no connection
+        cout << "\nStatus: No ports or connections are currently established.\n";
+        cout << "All connections are disabled.\n";
+
+        // Create the file and set default status to "no"
+        ofstream outFile("status.txt");
+        if (outFile) {
+            outFile << "no";
+        } else {
+            cerr << "Error: Unable to create status file.\n";
+            return;
+        }
+    } else {
+        // Read the status from the file
+        string status;
+        getline(statusFile, status);
+        statusFile.close();
+
+        if (status == "yes") {
+            cout << "\nStatus: Connections are established!\n";
+            cout << "You may proceed to the next phase.\n";
+        } else {
+            cout << "\nStatus: No ports or connections are currently established.\n";
+            cout << "All connections are disabled.\n";
+        }
+    }
 
     // Indicate further actions
     cout << "\nNext Step: Prime number generation will be initiated in Phase 2.\n";
