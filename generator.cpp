@@ -29,7 +29,7 @@ void generatorSelection(unsigned long long prime) {
             cout << "Invalid generator. Please enter a value such that 1 < g < " << prime - 1 << ".\n";
         }
     }
-    ofstream outputFile("generatorFile.txt");
+    ofstream outputFile("generator.txt");
     if (!outputFile) {
         cerr << "Error: Unable to write generator to file.\n";
         return;

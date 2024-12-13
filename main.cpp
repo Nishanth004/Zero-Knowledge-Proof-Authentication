@@ -177,32 +177,23 @@
 
 using namespace std;
 
-// Function to generate a stronger hash
 string strong_hash(const string &password, unsigned long long mod) {
+    // Step 1: Hash the password using std::hash
     hash<string> hasher;
     size_t hashed_value = hasher(password) % mod;
 
-    // Convert hashed value to a mixed-character string
+    // Step 2: Use the hashed value and perform some transformations to generate a longer number
+    unsigned long long long_number = hashed_value;
+    
+    // We multiply by some large primes and modify the value to ensure it gets bigger
+    long_number = long_number * 0x5DEECE66DLL + 0xBL; // Random prime-like operation for variety
+
+    // Step 3: Convert the long number into a string
     stringstream ss;
-    ss << hex << hashed_value;  // Convert to hexadecimal
-
-    // Append some additional transformations for more complexity
-    string result = ss.str();
-    for (char &c : result) {
-        if (isdigit(c)) {
-            c = 'A' + (c - '0');  // Convert digits to letters
-        } else if (isalpha(c)) {
-            c = (c % 2 == 0) ? toupper(c) : tolower(c);  // Alternate case
-        }
-    }
-
-    // Add special characters for further diversity
-    string special_chars = "!@#$%^&*";
-    for (size_t i = 0; i < result.size(); ++i) {
-        result[i] = (result[i] + special_chars[i % special_chars.size()]) % 128;
-    }
-
-    return result;
+    ss << long_number;
+    
+    // Step 4: Return the long numeric string
+    return ss.str();
 }
 
 int main() {
