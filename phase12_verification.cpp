@@ -56,7 +56,7 @@ int main() {
     }
 
     // Compute t = g^r % p
-    int t = modular_pow(g, v, p);
+    int t = modular_pow(1000, v, 1669);
 
     // Compute result = (y * v^c) % p
     int v_c = modular_pow(v, c, p);  // Compute v^c % p
