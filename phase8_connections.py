@@ -140,7 +140,7 @@ def perform_operation(operation, action_message, completion_message, popup_title
                 else:
                     messagebox.showwarning(popup_title, popup_message_fail)
             except FileNotFoundError:
-                messagebox.showerror("Error", "Status file not found.")
+                messagebox.showwarning(popup_title, popup_message_fail)
         else:
             # For establish and de-establish operations
             messagebox.showinfo(popup_title, completion_message)

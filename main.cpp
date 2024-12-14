@@ -177,23 +177,42 @@
 
 using namespace std;
 
-string strong_hash(const string &password, unsigned long long mod) {
-    // Step 1: Hash the password using std::hash
+// string strong_hash(const string &password, unsigned long long mod) {
+//     // Step 1: Hash the password using std::hash
+//     hash<string> hasher;
+//     size_t hashed_value = hasher(password) % mod;
+
+//     // Step 2: Use the hashed value and perform some transformations to generate a longer number
+//     unsigned long long long_number = hashed_value;
+    
+//     // We multiply by some large primes and modify the value to ensure it gets bigger
+//     long_number = long_number * 0x5DEECE66DLL + 0xBL; // Random prime-like operation for variety
+
+//     // Step 3: Convert the long number into a string
+//     stringstream ss;
+//     ss << long_number;
+    
+//     // Step 4: Return the long numeric string
+//     return ss.str();
+// }
+unsigned long long simple_hash(const string &password, unsigned long long mod) {
     hash<string> hasher;
-    size_t hashed_value = hasher(password) % mod;
-
-    // Step 2: Use the hashed value and perform some transformations to generate a longer number
-    unsigned long long long_number = hashed_value;
+    return hasher(password) % mod;
+}
+int read_int_from_file(const string& filename) {
+    ifstream file(filename);
+    int value = 0;
     
-    // We multiply by some large primes and modify the value to ensure it gets bigger
-    long_number = long_number * 0x5DEECE66DLL + 0xBL; // Random prime-like operation for variety
+    // Check if file exists and can be opened
+    if (file.is_open()) {
+        file >> value;
+        file.close();
+    } else {
+        cerr << "Error: File not found or could not be opened: " << filename << endl;
+        return -1;  // Return -1 to indicate an error
+    }
 
-    // Step 3: Convert the long number into a string
-    stringstream ss;
-    ss << long_number;
-    
-    // Step 4: Return the long numeric string
-    return ss.str();
+    return value;
 }
 
 int main() {
@@ -207,10 +226,10 @@ int main() {
         cerr << "Error: Unable to open password file.\n";
         return 1;
     }
+    int p = read_int_from_file("prime.txt");
 
     // Generate a stronger hash
-    unsigned long long mod = 1e9 + 7;  // Large prime modulus
-    string hashed_password = strong_hash(password, mod);
+    unsigned long long hashed_password = simple_hash(password, p-1)+1;
 
     ofstream outputFile("hashed_password.txt");
     if (!outputFile) {
@@ -223,4 +242,5 @@ int main() {
 
     return 0;
 }
+
 

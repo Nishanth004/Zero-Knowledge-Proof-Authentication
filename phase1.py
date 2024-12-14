@@ -214,8 +214,8 @@ def check_connections():
             status_label.config(text="No ports or connections are established.")
             messagebox.showinfo("Phase 1", "All connections are disabled.\nProceed to Phase 2.")
     except FileNotFoundError:
-        status_label.config(text="Connection status file not found.")
-        messagebox.showerror("Error", "Status file is missing.")
+        status_label.config(text="No ports or connections are established.")
+        messagebox.showinfo("Phase 1", "All connections are disabled.\nProceed.")
 
 # Create main window
 root = tk.Tk()

@@ -8,7 +8,7 @@ def hash_password():
     # Execute the C++ program to hash the password
     try:
         # Running the C++ hashing program (main.exe)
-        subprocess.run(["./main.exe"], check=True)
+        subprocess.run(["./hash.exe"], check=True)
 
         # Read the hashed password from the output file
         with open("hashed_password.txt", "r") as file:
