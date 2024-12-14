@@ -5,7 +5,7 @@
 
 void clearSensitiveFiles() {
     // List of sensitive files to be deleted
-    const std::string sensitiveFiles[] = {"password.txt", "hashed_password.txt"};
+    const std::string sensitiveFiles[] = {"password.txt"};
 
     for (const auto &file : sensitiveFiles) {
         if (std::remove(file.c_str()) == 0) {

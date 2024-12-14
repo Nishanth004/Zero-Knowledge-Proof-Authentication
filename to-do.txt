@@ -4,3 +4,4 @@
 4. connect every phases
 now give me code for phase 8:
 it should have three options, check for connectinos, establish connections, de-establish connections
+    

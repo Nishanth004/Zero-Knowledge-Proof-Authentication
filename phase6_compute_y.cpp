@@ -55,13 +55,13 @@ int main() {
     // Output the result
     ofstream yFile("y.txt");
     if (!yFile) {
-        cerr << "Error: Unable to write to y_value.txt.\n";
+        cerr << "Error: Unable to write to y.txt.\n";
         return 1;
     }
     yFile << y;
     yFile.close();
 
-    cout << "Computed y = g^x mod p. Result saved to y_value.txt\n";
+    cout << "Computed y = g^x mod p. Result saved to y.txt\n";
 
     return 0;
 }

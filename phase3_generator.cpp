@@ -41,7 +41,15 @@ void generatorSelection(unsigned long long prime) {
 
 int main() {
     // Simulate the prime number obtained from Phase 2
-    unsigned long long prime = 2027;  // Replace this with the prime obtained from Phase 2
+    unsigned long long prime;
+    ifstream xFile("prime.txt");
+    if (!xFile) {
+        cerr << "Error: Unable to open prime.txt.\n";
+        return 1;
+    }
+    xFile >> prime;
+    xFile.close();
+
 
     // Start Phase 3
     generatorSelection(prime);
