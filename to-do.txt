@@ -2,3 +2,5 @@
 2. prime number maker
 3. showing each step visually
 4. connect every phases
+now give me code for phase 8:
+it should have three options, check for connectinos, establish connections, de-establish connections
