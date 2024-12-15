@@ -89,6 +89,9 @@ int main() {
     cout << "Received random value has been saved to v.txt\n";
 
     cout << "\nServer has sent these values for the client to use." << endl;
+    string enter;
+    cout<<"enter something..." << endl;
+    cin>>enter;
 
     return 0;
 }

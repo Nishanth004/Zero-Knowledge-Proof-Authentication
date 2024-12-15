@@ -3,6 +3,7 @@
 #include <random>
 #include <fstream>
 #include <unordered_set>
+#include <limits>
 
 using namespace std;
 
@@ -34,7 +35,7 @@ unsigned long long generateRandomPrime(unordered_set<unsigned long long>& usedPr
 }
 
 // Prime number generator tool - Console version
-void primeNumberGenerator() {
+unsigned long long primeNumberGenerator() {
     char choice;
     unsigned long long userNumber, suggestedPrime;
     unordered_set<unsigned long long> usedPrimes;
@@ -50,7 +51,7 @@ void primeNumberGenerator() {
 
             if (isPrime(userNumber)) {
                 cout << userNumber << " is a prime number.\n";
-                break;  // Exit the loop after successful selection
+                return userNumber;  // Return the prime number selected by the user
             } else {
                 cout << userNumber << " is not a prime number.\n";
                 cout << "Please try again.\n";
@@ -63,25 +64,66 @@ void primeNumberGenerator() {
                 cin >> choice;
             } while (choice != 'y' && choice != 'Y');
             cout << "Prime number " << suggestedPrime << " has been selected.\n";
-            break;  // Exit the loop after successful selection
+            return suggestedPrime;  // Return the system-generated prime number
         } else {
             cout << "Invalid choice. Please select either 'e' or 'g'.\n";
         }
     }
+}
 
-    // Save the selected prime number to a file
-    ofstream outputFile("prime.txt");
+// Function to check if the generator is valid
+bool isValidGenerator(unsigned long long g, unsigned long long p) {
+    return g > 1 && g < p - 1;
+}
+
+// Generator selection tool
+void generatorSelection(unsigned long long prime) {
+    unsigned long long generator;
+
+    cout << "\n=== Phase 3: Generator Selection ===\n";
+    cout << "Explanation:\n";
+    cout << "A generator (g) is a number such that all elements in the group (Z_p*) can be generated as powers of g modulo p.\n";
+    cout << "It must satisfy: 1 < g < " << prime - 1 << "\n";
+
+    while (true) {
+        cout << "Enter a generator (g): ";
+        cin >> generator;
+
+        if (isValidGenerator(generator, prime)) {
+            cout << "Generator " << generator << " has been selected.\n";
+            break;  // Exit the loop after successful selection
+        } else {
+            cout << "Invalid generator. Please enter a value such that 1 < g < " << prime - 1 << ".\n";
+        }
+    }
+
+    ofstream outputFile("generator.txt");
     if (!outputFile) {
-        cerr << "Error: Unable to write prime to file.\n";
+        cerr << "Error: Unable to write generator to file.\n";
         return;
     }
 
-    outputFile << suggestedPrime;
+    outputFile << generator;
     outputFile.close();
-    cout << "Prime number " << suggestedPrime << " has been saved to prime.txt.\n";
 }
 
 int main() {
-    primeNumberGenerator();
+    // Prime number generation
+    unsigned long long prime = primeNumberGenerator();
+
+    // Save the selected prime number to a file
+    ofstream primeFile("prime.txt");
+    if (!primeFile) {
+        cerr << "Error: Unable to write prime to file.\n";
+        return 1;
+    }
+
+    primeFile << prime;
+    primeFile.close();
+    cout << "Prime number " << prime << " has been saved to prime.txt.\n";
+
+    // Start Phase 3: Generator selection
+    generatorSelection(prime);
+    
     return 0;
 }

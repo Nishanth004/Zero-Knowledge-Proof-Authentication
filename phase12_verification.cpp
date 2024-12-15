@@ -73,6 +73,8 @@ int main() {
     } else {
         cout << "\nVerification failed: Client's response is invalid." << endl;
     }
-
+    string enter;
+    cout<<"enter something..." << endl;
+    cin>>enter;
     return 0;
 }
