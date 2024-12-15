@@ -78,7 +78,6 @@ confirm_password_entry.pack(pady=5)
 submit_button = tk.Button(root, text="Register", command=enter_password, font=("Arial", 12))
 submit_button.pack(pady=20)
 
-
 # Labels for hashed password display
 hashed_label = tk.Label(root, text="", font=("Arial", 12))
 hashed_label.pack(pady=10)

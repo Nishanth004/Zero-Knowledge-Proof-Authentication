@@ -97,8 +97,9 @@ int main() {
     getline(cin, password);
 
     // Combine username and password to generate the secret x
-    string combined = username + ":" + password; // Concatenate username and password
-    unsigned long long x = simple_hash(combined, 1000) + 1; // Ensure x is not 0
+    string combined = password; // Concatenate username and password
+    unsigned long long x = simple_hash(combined, p-1
+    ) + 1; // Ensure x is not 0
 
     // Debug: Print the computed x
     cout << "Computed x for correct password: " << x << endl;
@@ -106,8 +107,8 @@ int main() {
     // Step 2: Authentication (Verification with random prime `p` and generator `g`)
 
     // Generate a random prime number p and generator g
-    unsigned long long p = generate_random_prime();
-    unsigned long long g = generate_random_generator(p);
+    unsigned long long p = 4027;
+    unsigned long long g = 3999;
 
     // Debug: Print p and g
     cout << "Generated prime p: " << p << endl;
@@ -128,8 +129,8 @@ int main() {
     getline(cin, wrong_password); // Take full input
 
     // Combine the entered username and password for verification
-    string wrong_combined = username + ":" + wrong_password; // Concatenate username and password
-    unsigned long long wrong_x = simple_hash(wrong_combined, 1000) + 1; // Ensure wrong_x is not 0
+    string wrong_combined =wrong_password; // Concatenate username and password
+    unsigned long long wrong_x = simple_hash(wrong_combined, p-1) + 1; // Ensure wrong_x is not 0
 
     // Debug: Print x for the wrong password
     cout << "Computed x for wrong password: " << wrong_x << endl;

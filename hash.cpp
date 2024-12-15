@@ -177,24 +177,7 @@
 
 using namespace std;
 
-// string strong_hash(const string &password, unsigned long long mod) {
-//     // Step 1: Hash the password using std::hash
-//     hash<string> hasher;
-//     size_t hashed_value = hasher(password) % mod;
 
-//     // Step 2: Use the hashed value and perform some transformations to generate a longer number
-//     unsigned long long long_number = hashed_value;
-    
-//     // We multiply by some large primes and modify the value to ensure it gets bigger
-//     long_number = long_number * 0x5DEECE66DLL + 0xBL; // Random prime-like operation for variety
-
-//     // Step 3: Convert the long number into a string
-//     stringstream ss;
-//     ss << long_number;
-    
-//     // Step 4: Return the long numeric string
-//     return ss.str();
-// }
 unsigned long long simple_hash(const string &password, unsigned long long mod) {
     hash<string> hasher;
     return hasher(password) % mod;
