@@ -5,15 +5,18 @@ import subprocess
 # Function to save the password to a file
 def save_password():
     password = password_entry.get()
-    if password:  # Ensure the password is not empty
+    username = user_entry.get()
+    if password and username:  # Ensure the password is not empty
         try:
             with open("password.txt", "w") as file:
                 file.write(password)
-            messagebox.showinfo("Success", "Password saved successfully!")
+            with open("username.txt", "w") as file:
+                file.write(username)
+            messagebox.showinfo("Success", "Credentials saved successfully!")
         except IOError:
-            messagebox.showerror("Error", "Failed to save the password. Please try again.")
+            messagebox.showerror("Error", "Failed to save the Credentials. Please try again.")
     else:
-        messagebox.showwarning("Input Error", "Please enter a password.")
+        messagebox.showwarning("Input Error", "Please enter a Credentials.")
 
 # Function to trigger C++ hashing program and display the result
 def hash_password():

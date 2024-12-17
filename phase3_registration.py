@@ -4,15 +4,18 @@ import subprocess
 
 # Function to handle password entry and confirmation
 def enter_password():
+    username = user_entry.get()
     password = password_entry.get()
     confirm_password = confirm_password_entry.get()
 
     if password == confirm_password:
-        if password:  # Ensure the password is not empty
+        if password and username:  # Ensure the password is not empty
             messagebox.showinfo("Password Entered", "Password entered successfully!")
             save_and_hash_password()  # Save the password and hash it
-        else:
+        elif not password:
             messagebox.showwarning("Input Error", "Please enter a password.")
+        else:
+            messagebox.showwarning("Input Error", "Please enter a username.")
     else:
         messagebox.showwarning("Password Mismatch", "Passwords do not match. Please try again.")
 

@@ -30,7 +30,7 @@ int read_int_from_file(const string& filename) {
 
 int main() {
     // Read the password from the file
-    string password;
+    string password, username;
     ifstream passwordFile("password.txt");
     if (passwordFile.is_open()) {
         getline(passwordFile, password);
@@ -39,10 +39,18 @@ int main() {
         cerr << "Error: Unable to open password file.\n";
         return 1;
     }
+    ifstream usernameFile("username.txt");  
+    if (usernameFile.is_open()) {
+        getline(usernameFile, username);
+        usernameFile.close();
+    } else {
+        cerr << "Error: Unable to open username file.\n";
+        return 1;
+    }
     int p = read_int_from_file("prime.txt");
 
     // Generate a stronger hash
-    unsigned long long hashed_password = simple_hash(password, p-1)+1;
+    unsigned long long hashed_password = simple_hash(username+password, p-1)+1;
 
     ofstream outputFile("hashed_password.txt");
     if (!outputFile) {
