@@ -54,37 +54,38 @@ def hash_password():
 root = tk.Tk()
 root.title("Zero-Knowledge Proof - Password Management")
 root.geometry("500x500")
+root.config(bg="#f0f0f0")  # Light grey background
 
 # Phase 4: Enter Password
-header_label = tk.Label(root, text="Phase 4: Enter Password", font=("Arial", 16))
-header_label.pack(pady=10)
+header_label = tk.Label(root, text="Phase 4: Enter Password", font=("Arial", 16, "bold"), bg="#f0f0f0", fg="#4CAF50")
+header_label.pack(pady=20)
 
 # Username entry
-user_label = tk.Label(root, text="Enter Username:", font=("Arial", 12))
+user_label = tk.Label(root, text="Enter Username:", font=("Arial", 12), bg="#f0f0f0")
 user_label.pack(pady=5)
-user_entry = tk.Entry(root, font=("Arial", 12))
-user_entry.pack(pady=5)
+user_entry = tk.Entry(root, font=("Arial", 12), bd=2, relief="solid")
+user_entry.pack(pady=5, ipadx=10, ipady=5)
 
 # Password entry
-password_label = tk.Label(root, text="Enter Password:", font=("Arial", 12))
+password_label = tk.Label(root, text="Enter Password:", font=("Arial", 12), bg="#f0f0f0")
 password_label.pack(pady=5)
-password_entry = tk.Entry(root, show="*", font=("Arial", 12))
-password_entry.pack(pady=5)
+password_entry = tk.Entry(root, show="*", font=("Arial", 12), bd=2, relief="solid")
+password_entry.pack(pady=5, ipadx=10, ipady=5)
 
 # Confirm password entry
-confirm_label = tk.Label(root, text="Confirm Password:", font=("Arial", 12))
+confirm_label = tk.Label(root, text="Confirm Password:", font=("Arial", 12), bg="#f0f0f0")
 confirm_label.pack(pady=5)
-confirm_password_entry = tk.Entry(root, show="*", font=("Arial", 12))
-confirm_password_entry.pack(pady=5)
+confirm_password_entry = tk.Entry(root, show="*", font=("Arial", 12), bd=2, relief="solid")
+confirm_password_entry.pack(pady=5, ipadx=10, ipady=5)
 
 # Submit button
-submit_button = tk.Button(root, text="Register", command=enter_password, font=("Arial", 12))
+submit_button = tk.Button(root, text="Register", command=enter_password, font=("Arial", 12), bg="#4CAF50", fg="white", activebackground="#45a049", activeforeground="white", relief="raised")
 submit_button.pack(pady=20)
 
 # Labels for hashed password display
-hashed_label = tk.Label(root, text="", font=("Arial", 12))
+hashed_label = tk.Label(root, text="", font=("Arial", 12), bg="#f0f0f0", fg="green")
 hashed_label.pack(pady=10)
-shared_label = tk.Label(root, text="", font=("Arial", 12), fg="blue")
+shared_label = tk.Label(root, text="", font=("Arial", 12), bg="#f0f0f0", fg="blue")
 shared_label.pack(pady=10)
 
 # Bind the Enter key to the enter_password function
