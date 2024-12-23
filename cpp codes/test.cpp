@@ -91,6 +91,8 @@ int main() {
     string username, password, wrong_password;
 
     // Step 1: Registration
+    unsigned long long p = 4027;
+    unsigned long long g = 3999;
     cout << "Enter your username: ";
     getline(cin, username);  // Take full input including spaces
     cout << "Enter your password: ";
@@ -98,8 +100,7 @@ int main() {
 
     // Combine username and password to generate the secret x
     string combined = password; // Concatenate username and password
-    unsigned long long x = simple_hash(combined, p-1
-    ) + 1; // Ensure x is not 0
+    unsigned long long x = simple_hash(combined, p-1) + 1; // Ensure x is not 0
 
     // Debug: Print the computed x
     cout << "Computed x for correct password: " << x << endl;
@@ -107,8 +108,7 @@ int main() {
     // Step 2: Authentication (Verification with random prime `p` and generator `g`)
 
     // Generate a random prime number p and generator g
-    unsigned long long p = 4027;
-    unsigned long long g = 3999;
+    
 
     // Debug: Print p and g
     cout << "Generated prime p: " << p << endl;
@@ -163,9 +163,9 @@ int main() {
     cout << "Verification result:\t" << result << endl;
 
     if (t == result) {
-        cout << "Alice has proven she knows the password.\n";
+        cout << "Client has proven the knowledge of password.\n";
     } else {
-        cout << "Alice has NOT proven she knows the password.\n";
+        cout << "Client has not proven the knowledge of password.\n";
     }
 
     return 0;
