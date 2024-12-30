@@ -1,0 +1,12 @@
+Successfully executed Python script: phase1.py
+Successfully executed C++ program: phase2
+Successfully executed Python script: phase3_registration.py
+Successfully executed C++ program: phase4
+Successfully executed C++ program: phase5
+Successfully executed Python script: phase6_connections.py
+Successfully executed C++ program: phase7
+Successfully executed Python script: phase8_login.py
+Successfully executed C++ program: phase9
+Successfully executed C++ program: phase10
+Successfully executed C++ program: phase11
+User exited the program.
